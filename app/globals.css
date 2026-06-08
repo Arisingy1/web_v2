@@ -1,0 +1,351 @@
+@import "tailwindcss";
+
+/* ============================================================
+   TalentMind — Design System
+   Light theme · White + pastel green · Lime accent · Deep teal
+   ============================================================ */
+
+@theme {
+  /* Brand palette */
+  --color-ink: #183833; /* deep dark teal/emerald — text + dark accents */
+  --color-ink-700: #20493f;
+  --color-ink-500: #4a6b62;
+  --color-ink-400: #6f8a82;
+
+  --color-lime: #7ab800; /* primary accent / CTA */
+  --color-lime-600: #6fb716;
+  --color-lime-700: #5f9c0f;
+  --color-lime-50: #f2f8e6; /* soft pastel green section bg */
+  --color-lime-100: #e7f1d3;
+
+  --color-cream: #f2f8e6;
+
+  --color-line: #e5e7eb; /* fine borders */
+  --color-line-green: #e2ecd2;
+
+  /* Surface */
+  --color-paper: #ffffff;
+
+  /* Risk / amber accent (reports) */
+  --color-amber: #c98a16;
+  --color-amber-50: #fdf6e7;
+
+  /* Typography (wired to next/font) */
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-geologica), var(--font-onest), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, "SFMono-Regular", monospace;
+
+  /* Soft diffused shadows */
+  --shadow-soft: 0 20px 40px rgba(24, 56, 51, 0.04);
+  --shadow-lift: 0 28px 60px rgba(24, 56, 51, 0.08);
+  --shadow-glow: 0 18px 40px rgba(122, 184, 0, 0.22);
+
+  /* Radius */
+  --radius-card: 24px;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-lime);
+    color: #ffffff;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  /* Visible, on-brand focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-lime-600);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 80rem; /* 1280px */
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Primary lime CTA */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.85rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #ffffff;
+    background-image: linear-gradient(180deg, var(--color-lime) 0%, var(--color-lime-600) 100%);
+    box-shadow: var(--shadow-glow);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    filter: saturate(1.08);
+    box-shadow: 0 22px 48px rgba(122, 184, 0, 0.3);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  /* Outline secondary */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.8rem 1.4rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-ink);
+    background-color: #ffffff;
+    border: 1px solid var(--color-line);
+    transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+  }
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-ink);
+    background-color: #fbfdf6;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-line-green);
+    background-color: var(--color-lime-50);
+    color: var(--color-ink-700);
+    padding: 0.4rem 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Amzigo-style bare monospace micro-label with bullet */
+  .mono-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-500);
+  }
+  .mono-label::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 9999px;
+    background-color: var(--color-lime);
+  }
+
+  /* Amzigo-style infinite marquee band */
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    animation: marquee 36s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Giant outlined wordmark (footer) */
+  .wordmark-outline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.8;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.14);
+  }
+
+  /* Hairline grid background used in hero / diagrams */
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, rgba(24, 56, 51, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(24, 56, 51, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Amzigo clone — continuous marquee (track duplicated 2x → -50%) */
+  @keyframes amzmarquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* "How it works" — seamless flowing data signal along SVG connectors.
+     Pattern length = 2 + 14 = 16; offset moves by a multiple of 16 → no jump. */
+  @keyframes flowdash {
+    to {
+      stroke-dashoffset: -160;
+    }
+  }
+  .flow-line {
+    stroke-dasharray: 2 14;
+    animation: flowdash 2.4s linear infinite;
+  }
+
+  /* Smooth, symmetrical easing for interactive hover (in AND out) */
+  .ease-smooth {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-lift {
+    box-shadow: var(--shadow-lift);
+  }
+
+  /* Staggered entrance used on page load */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-rise {
+    animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes floaty {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  .animate-floaty {
+    animation: floaty 6s ease-in-out infinite;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -1000;
+    }
+  }
+  .animate-dash {
+    stroke-dasharray: 8 10;
+    animation: dash 24s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Range slider styling (ROI calc / culture calibration) */
+input[type="range"].tm-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--color-lime-100);
+  outline-offset: 4px;
+}
+input[type="range"].tm-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 5px solid var(--color-lime-600);
+  box-shadow: 0 6px 16px rgba(24, 56, 51, 0.18);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+input[type="range"].tm-range::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+input[type="range"].tm-range::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 5px solid var(--color-lime-600);
+  box-shadow: 0 6px 16px rgba(24, 56, 51, 0.18);
+  cursor: pointer;
+}
