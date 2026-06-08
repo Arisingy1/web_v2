@@ -85,9 +85,9 @@ export default function ProductPage() {
           </span>
           <h1 className="pd-rise mt-6 text-[clamp(2.6rem,5.4vw,5.4rem)] font-bold leading-[0.98] tracking-tight" style={{ color: INK }}>
             Спросите.{" "}
-            <span className="relative whitespace-nowrap">
+            <span className="relative inline-block whitespace-nowrap pb-[0.16em]">
               <span style={{ color: GREEN }}>ИИ ответит</span>
-              <svg className="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 200 10" preserveAspectRatio="none"><path d="M2 7 Q 50 2 100 6 T 198 4" fill="none" stroke={GREEN} strokeWidth="3" strokeLinecap="round" /></svg>
+              <svg className="absolute bottom-[0.02em] left-0 w-full" height="8" viewBox="0 0 200 8" preserveAspectRatio="none"><path d="M3 4 Q 60 1.5 110 4.5 T 197 3.5" fill="none" stroke={GREEN} strokeWidth="3" strokeLinecap="round" /></svg>
             </span>
             <br />о любом кандидате
           </h1>
