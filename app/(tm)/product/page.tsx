@@ -87,14 +87,8 @@ export default function ProductPage() {
             Спросите.{" "}
             <span className="relative inline-block whitespace-nowrap pb-[0.26em]">
               <span style={{ color: GREEN }}>ИИ ответит</span>
-              <svg className="absolute bottom-[0.04em] left-0 w-full overflow-visible" height="18" viewBox="0 0 300 18" fill="none" preserveAspectRatio="none">
-                <defs>
-                  <filter id="brushRough" x="-4%" y="-80%" width="108%" height="260%">
-                    <feTurbulence type="turbulence" baseFrequency="0.012 0.035" numOctaves="2" seed="7" result="n" />
-                    <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G" />
-                  </filter>
-                </defs>
-                <path d="M5 9 Q 42 3 78 9 T 152 9 T 226 9 T 296 8" stroke={GREEN} strokeWidth="6.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#brushRough)" />
+              <svg className="absolute bottom-[0.05em] left-0 w-full overflow-visible" height="18" viewBox="0 0 300 18" fill="none" preserveAspectRatio="none">
+                <path d="M5 9 Q 42 3.5 78 9 T 152 9 T 226 9 T 296 8" stroke={GREEN} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
               </svg>
             </span>
             <br />о любом кандидате
