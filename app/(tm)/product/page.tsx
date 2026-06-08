@@ -85,9 +85,17 @@ export default function ProductPage() {
           </span>
           <h1 className="pd-rise mt-6 text-[clamp(2.6rem,5.4vw,5.4rem)] font-bold leading-[0.98] tracking-tight" style={{ color: INK }}>
             Спросите.{" "}
-            <span className="relative inline-block whitespace-nowrap pb-[0.16em]">
+            <span className="relative inline-block whitespace-nowrap pb-[0.26em]">
               <span style={{ color: GREEN }}>ИИ ответит</span>
-              <svg className="absolute bottom-[0.02em] left-0 w-full" height="8" viewBox="0 0 200 8" preserveAspectRatio="none"><path d="M3 4 Q 60 1.5 110 4.5 T 197 3.5" fill="none" stroke={GREEN} strokeWidth="3" strokeLinecap="round" /></svg>
+              <svg className="absolute bottom-[0.04em] left-0 w-full overflow-visible" height="18" viewBox="0 0 300 18" fill="none" preserveAspectRatio="none">
+                <defs>
+                  <filter id="brushRough" x="-4%" y="-80%" width="108%" height="260%">
+                    <feTurbulence type="turbulence" baseFrequency="0.012 0.035" numOctaves="2" seed="7" result="n" />
+                    <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G" />
+                  </filter>
+                </defs>
+                <path d="M5 9 Q 42 3 78 9 T 152 9 T 226 9 T 296 8" stroke={GREEN} strokeWidth="6.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#brushRough)" />
+              </svg>
             </span>
             <br />о любом кандидате
           </h1>
