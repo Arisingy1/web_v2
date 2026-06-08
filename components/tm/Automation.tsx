@@ -464,10 +464,10 @@ export default function Automation() {
 
   return (
     <section ref={sectionRef} className="relative w-full">
-      {STEPS.map((s) => (
+      {STEPS.map((s, i) => (
         <div
           key={s.key}
-          className={`auto-step relative flex min-h-screen w-full items-center justify-center px-6 will-change-[filter,opacity] md:px-12 ${s.full ? "auto-step-report py-24" : "overflow-hidden"}`}
+          className={`auto-step relative flex w-full items-center justify-center px-6 will-change-[filter,opacity] md:px-12 ${i === STEPS.length - 1 ? "min-h-[64vh]" : i === STEPS.length - 2 ? "min-h-[84vh]" : "min-h-screen"} ${s.full ? (i === STEPS.length - 1 ? "auto-step-report pt-4 pb-16" : i === STEPS.length - 2 ? "auto-step-report pt-24 pb-6" : "auto-step-report py-24") : "overflow-hidden"}`}
         >
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute -left-24 top-[10%] h-[440px] w-[440px] rounded-full bg-[#7AB800]/16 blur-[140px]" />

@@ -15,15 +15,15 @@ export default function BusinessValue() {
     <section className="w-full px-4 py-12 md:px-8">
       <div
         className="relative overflow-hidden rounded-[2.5rem] border border-[#e6ece4] px-5 pb-14 pt-6 md:px-6 md:pb-16"
-        style={{ background: "linear-gradient(135deg,#eef5e7 0%,#ffffff 45%,#e9f3f4 100%)" }}
+        style={{ background: "linear-gradient(135deg,#eef5e7 0%,#ffffff 45%,#eaf3e2 100%)" }}
       >
         <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#7AB800]/15 blur-[130px]" />
-        <div className="pointer-events-none absolute -bottom-32 left-1/4 h-96 w-96 rounded-full bg-[#11AFCC]/12 blur-[140px]" />
+        <div className="pointer-events-none absolute -bottom-32 left-1/4 h-96 w-96 rounded-full bg-[#7AB800]/10 blur-[140px]" />
 
         {/* текст + выделенный заголовок */}
         <div className="relative">
           <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest" style={{ color: GREEN }}>
-            Измените ваш подход к найму
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: GREEN }} /> Измените ваш подход к найму
           </span>
 
           <h2 className="mt-4 max-w-[20ch] text-3xl font-extrabold leading-[1.12] tracking-tight sm:text-4xl lg:text-[2.9rem]" style={{ color: INK }}>
