@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
@@ -65,10 +65,11 @@ export const INK = "#183833";
 export const RED = "#FF5252";
 export const BG = "#F4F7F6";
 
-export function Arrow({ className = "" }: { className?: string }) {
+export function Arrow({ className = "", style }: { className?: string; style?: CSSProperties }) {
   return (
     <ArrowUpRight
       className={`h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${className}`}
+      style={style}
     />
   );
 }
