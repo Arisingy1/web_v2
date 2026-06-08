@@ -201,10 +201,6 @@ export default function CulturePage() {
         }
       `}</style>
 
-      {/* атмосфера фона */}
-      <div className="pointer-events-none absolute inset-0 -z-10" style={{ background: "radial-gradient(120% 80% at 16% 2%, #ffffff 0%, #eef7e3 28%, #e8f4f3 60%, #dcedef 100%)" }} />
-      <div className="pointer-events-none absolute -right-[6%] top-[3%] -z-10 h-[520px] w-[520px] rounded-full bg-[#7AB800]/12 blur-[150px]" />
-      <div className="pointer-events-none absolute top-[38%] -left-[5%] -z-10 h-[460px] w-[460px] rounded-full bg-[#11AFCC]/12 blur-[160px]" />
 
       {/* ============================== HERO ============================== */}
       <section className="relative mx-auto max-w-[1100px] px-6 pt-32 pb-20 text-center md:px-12 lg:pt-44">

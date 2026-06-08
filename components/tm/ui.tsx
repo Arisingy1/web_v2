@@ -172,8 +172,8 @@ export function CTA({
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <span
-      className="inline-flex items-center gap-2 rounded-full border bg-white/70 px-4 py-1.5 text-xs font-medium backdrop-blur"
-      style={{ borderColor: `${GREEN}33`, color: INK }}
+      className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest"
+      style={{ color: GREEN }}
     >
       <span className="h-1.5 w-1.5 rounded-full" style={{ background: GREEN }} />
       {children}

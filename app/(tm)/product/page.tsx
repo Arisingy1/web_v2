@@ -65,22 +65,13 @@ export default function ProductPage() {
         .pd-grid { background-image: radial-gradient(rgba(24,56,51,0.05) 1px, transparent 1px); background-size: 30px 30px; }
       `}</style>
 
-      {/* фон: светлый градиент + сетка + дрейфующие свечения */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0" style={{ background: "radial-gradient(120% 80% at 80% 0%, #ffffff 0%, #eef7e3 30%, #e8f4f3 62%, #dcedef 100%)" }} />
-        <div className="pd-grid absolute inset-0 opacity-70" />
-        <div className="absolute right-[6%] top-[8%] h-[460px] w-[460px] rounded-full blur-[150px]" style={{ background: `${GREEN}22`, animation: "pd-drift 16s ease-in-out infinite" }} />
-        <div className="absolute left-[2%] top-[48%] h-[420px] w-[420px] rounded-full blur-[150px]" style={{ background: `${TEAL}1f`, animation: "pd-drift 20s ease-in-out infinite reverse" }} />
-      </div>
 
       {/* ============================== HERO ============================== */}
       <section className="relative mx-auto grid max-w-[1340px] grid-cols-1 items-center gap-12 px-6 pt-36 pb-16 md:px-10 lg:grid-cols-[1.05fr_1fr] lg:pt-44">
         {/* ЛЕВО */}
         <div className="relative z-10">
-          <span className="pd-rise inline-flex items-center gap-2 rounded-full border border-[#183833]/10 bg-white/70 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.22em] backdrop-blur" style={{ color: GREEN }}>
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full" style={{ background: GREEN, animation: "pd-pulse 2s ease-in-out infinite" }} />
-            </span>
+          <span className="pd-rise inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest" style={{ color: GREEN }}>
+            <span className="h-1.5 w-1.5 rounded-full" style={{ background: GREEN }} />
             ИИ-ассистент
           </span>
           <h1 className="pd-rise mt-6 text-[clamp(2.6rem,5.4vw,5.4rem)] font-bold leading-[0.98] tracking-tight" style={{ color: INK }}>

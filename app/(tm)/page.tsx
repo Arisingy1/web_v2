@@ -52,15 +52,6 @@ export default function HomePage() {
     <div ref={root} className="w-full">
       {/* ============================== HERO ============================== */}
       <section className="relative grid min-h-screen w-full grid-cols-1 items-stretch gap-10 px-6 pt-24 pb-8 md:px-12 lg:grid-cols-[1fr_1.02fr]">
-        {/* мягкая атмосфера фона (градиентная сетка + свечения) */}
-        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute inset-0" style={{ background: "radial-gradient(120% 115% at 15% 5%, #ffffff 0%, #f3f9ec 34%, #ecf5e8 66%, #ffffff 100%)" }} />
-          <div className="absolute -right-[6%] top-[8%] h-[560px] w-[560px] rounded-full bg-[#7AB800]/14 blur-[150px]" />
-          <div className="absolute bottom-0 right-[28%] h-[460px] w-[460px] rounded-full bg-[#7AB800]/10 blur-[160px]" />
-          <div className="absolute -left-[5%] top-[32%] h-[380px] w-[380px] rounded-full bg-[#7AB800]/8 blur-[150px]" />
-          {/* мягкий переход в следующий блок — без резкой границы */}
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-white" />
-        </div>
 
         {/* ЛЕВО — заголовок сверху, описание + кнопка снизу */}
         <div className="relative z-10 flex h-full flex-col justify-start py-1">

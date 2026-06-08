@@ -175,7 +175,6 @@ const SECTIONS: Section[] = [
 export default function PrivacyPage() {
   return (
     <main className="relative w-full" style={{ color: INK }}>
-      <div className="pointer-events-none absolute inset-0 -z-10" style={{ background: "radial-gradient(110% 50% at 50% 0%, #eef7e3 0%, #f4f7f6 55%, #ffffff 100%)" }} />
 
       <section className="mx-auto max-w-[860px] px-6 pt-36 pb-20 md:px-8 lg:pt-44">
         <p className="font-mono text-xs uppercase tracking-[0.22em]" style={{ color: GREEN }}>Юридическая информация</p>

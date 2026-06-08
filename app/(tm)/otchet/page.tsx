@@ -160,10 +160,6 @@ export default function OtchetPage() {
 
   return (
     <div ref={rootRef} className="relative w-full overflow-hidden" style={{ color: INK }}>
-      {/* атмосфера фона */}
-      <div className="pointer-events-none absolute inset-0 -z-10" style={{ background: "radial-gradient(120% 90% at 18% 4%, #ffffff 0%, #eef7e3 30%, #e8f4f3 60%, #dcedef 100%)" }} />
-      <div className="pointer-events-none absolute -right-[6%] top-[4%] -z-10 h-[520px] w-[520px] rounded-full bg-[#7AB800]/12 blur-[150px]" />
-      <div className="pointer-events-none absolute top-[42%] -left-[4%] -z-10 h-[460px] w-[460px] rounded-full bg-[#11AFCC]/12 blur-[160px]" />
 
       {/* ============================== HERO ============================== */}
       <section className="relative mx-auto max-w-[1600px] px-6 pt-32 pb-10 text-center md:px-8 lg:pt-40">
