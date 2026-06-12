@@ -1,15 +1,14 @@
 "use client";
 
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { Arrow, Eyebrow, GREEN, INK, TEAL, useReveals } from "@/components/tm/ui";
+import { Arrow, GREEN, INK, TEAL, useReveals } from "@/components/tm/ui";
 
 export default function ContactsPage() {
   const root = useReveals();
   return (
     <div ref={root}>
       <section className="mx-auto max-w-[1100px] px-6 pt-40 pb-12 text-center">
-        <div className="reveal flex justify-center"><Eyebrow>Контакты</Eyebrow></div>
-        <h1 className="reveal mx-auto mt-6 max-w-3xl text-[2.6rem] font-semibold leading-[1] tracking-tight sm:text-[4rem]">
+        <h1 className="reveal mx-auto max-w-3xl text-[2.6rem] font-semibold leading-[1] tracking-tight sm:text-[4rem]">
           Поговорим о вашем <span style={{ color: GREEN }}>найме</span>
         </h1>
         <p className="reveal mx-auto mt-6 max-w-xl text-lg text-[#183833]/70">
@@ -23,6 +22,7 @@ export default function ContactsPage() {
           {[
             { icon: <Mail className="h-5 w-5" />, t: "Почта", v: "info@talentmind.ru", href: "mailto:info@talentmind.ru", a: GREEN },
             { icon: <Phone className="h-5 w-5" />, t: "Телефон", v: "+7 (495) 540-51-79", href: "tel:+74955405179", a: TEAL },
+            { icon: <Send className="h-5 w-5" />, t: "Telegram-канал", v: "@talentmind", href: "https://t.me/talentmind", a: "#229ED9" },
             { icon: <MapPin className="h-5 w-5" />, t: "Офис", v: "Москва, ул. Шаболовка, д. 34, стр. 3", href: undefined, a: GREEN },
           ].map((c) => (
             <div key={c.t} className="flex items-center gap-4 rounded-2xl border border-[#ededed] bg-white p-5 shadow-[0_12px_30px_rgba(24,56,51,0.05)]">
@@ -30,7 +30,7 @@ export default function ContactsPage() {
               <div>
                 <p className="text-xs text-[#183833]/55">{c.t}</p>
                 {c.href ? (
-                  <a href={c.href} className="text-base font-medium transition-colors hover:text-[#7AB800]" style={{ color: INK }}>{c.v}</a>
+                  <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined} className="text-base font-medium transition-colors hover:text-[#7AB800]" style={{ color: INK }}>{c.v}</a>
                 ) : (
                   <p className="text-base font-medium" style={{ color: INK }}>{c.v}</p>
                 )}

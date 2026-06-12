@@ -18,8 +18,8 @@ const FEATURES: { n: string; title: string; text: string; color: string; icon: R
   { n: "01", title: "Диалог с воронкой", text: "«Пообщайтесь» со всей воронкой кандидатов на естественном языке — без фильтров и таблиц", color: GREEN, icon: <MessagesSquare className="h-6 w-6" />, span: "lg:col-span-2" },
   { n: "02", title: "Контекст не теряется", text: "Ассистент помнит весь диалог и каждое интервью — спрашивайте без повторных вводных", color: TEAL, icon: <Brain className="h-6 w-6" />, span: "" },
   { n: "03", title: "Ответ за секунды", text: "Мгновенно — на основе анализа реальных интервью, а не общих фраз", color: AMBER, icon: <Zap className="h-6 w-6" />, span: "" },
-  { n: "04", title: "Сравнение кандидатов", text: "Находите лучшего по нужным критериям — ассистент сопоставит профили сам", color: TEAL, icon: <Users className="h-6 w-6" />, span: "" },
-  { n: "05", title: "Рекомендации к найму", text: "Подскажет, кого звать на следующий этап и почему — с аргументами из интервью", color: GREEN, icon: <Sparkles className="h-6 w-6" />, span: "" },
+  { n: "04", title: "Сравнение кандидатов", text: "Быстрое сравнение профилей — поручите ассистенту сопоставить кандидатов по вашим критериям", color: TEAL, icon: <Users className="h-6 w-6" />, span: "" },
+  { n: "05", title: "Рекомендации к найму", text: "Поддержка в выборе — получайте структурированные выжимки из интервью, чтобы аргументированно рекомендовать кандидатов нанимающим менеджерам", color: GREEN, icon: <Sparkles className="h-6 w-6" />, span: "" },
 ];
 
 export default function ProductPage() {
@@ -70,19 +70,17 @@ export default function ProductPage() {
       <section className="relative mx-auto grid max-w-[1340px] grid-cols-1 items-center gap-12 px-6 pt-36 pb-16 md:px-10 lg:grid-cols-[1.05fr_1fr] lg:pt-44">
         {/* ЛЕВО */}
         <div className="relative z-10">
-          <span className="pd-rise inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest" style={{ color: GREEN }}>
-            <span className="h-1.5 w-1.5 rounded-full" style={{ background: GREEN }} />
-            ИИ-ассистент
-          </span>
-          <h1 className="pd-rise mt-6 text-[clamp(2.6rem,5.4vw,5.4rem)] font-bold leading-[0.98] tracking-tight" style={{ color: INK }}>
-            Спросите.{" "}
-            <span className="relative inline-block whitespace-nowrap pb-[0.26em]">
-              <span style={{ color: GREEN }}>ИИ ответит</span>
+          <h1 className="pd-rise text-[clamp(2rem,4.2vw,4rem)] font-bold leading-[1.05] tracking-tight" style={{ color: INK }}>
+            Ваш <span style={{ color: GREEN }}>персональный</span>
+            <br />
+            <span className="relative inline-block whitespace-nowrap pb-[0.26em] -mb-[0.26em] align-top">
+              <span style={{ color: GREEN }}>аналитик</span>
               <svg className="absolute bottom-[0.05em] left-0 w-full overflow-visible" height="18" viewBox="0 0 300 18" fill="none" preserveAspectRatio="none">
                 <path d="M5 9 Q 42 3.5 78 9 T 152 9 T 226 9 T 296 8" stroke={GREEN} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
               </svg>
-            </span>
-            <br />о любом кандидате
+            </span>{" "}
+            по всем
+            <br />кандидатам
           </h1>
           <p className="pd-rise mt-7 max-w-lg text-lg leading-relaxed text-[#183833]/65">
             Не отчёты и таблицы, а живой диалог. Ассистент держит в памяти все интервью вашей
@@ -160,7 +158,7 @@ export default function ProductPage() {
         <div className="pd-reveal relative overflow-hidden rounded-[2.75rem] p-10 text-center text-white shadow-[0_40px_90px_rgba(122,184,0,0.32)] md:p-16" style={{ background: `linear-gradient(135deg, ${GREEN}, #5e9400)` }}>
           <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-white/20 blur-[90px]" />
           <h2 className="relative text-3xl font-bold tracking-tight sm:text-5xl">Спросите ассистента о своих кандидатах</h2>
-          <p className="relative mx-auto mt-4 max-w-xl text-lg text-white/85">10 разборов бесплатно, без банковской карты. Первый ответ — через минуту</p>
+          <p className="relative mx-auto mt-4 max-w-xl text-lg text-white/85">5 разборов бесплатно, без банковской карты. Первый ответ — через минуту</p>
           <a href="/pricing" className="ease-smooth relative mt-8 inline-flex items-center gap-2 rounded-2xl bg-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:-translate-y-1" style={{ color: GREEN }}>
             Начать бесплатно <ArrowRight className="h-5 w-5" />
           </a>

@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { Arrow, CountUp, GREEN, INK, useReveals } from "@/components/tm/ui";
+import { Clock, Repeat2, ShieldCheck } from "lucide-react";
+import { Arrow, CountUp, GREEN, INK, TEAL, useReveals } from "@/components/tm/ui";
 import FigmaImage from "@/components/tm/FigmaImage";
 import PricingBento from "@/components/tm/PricingBento";
 import BusinessValue from "@/components/tm/BusinessValue";
@@ -61,9 +62,9 @@ export default function HomePage() {
 
           <div className="hero-rise mt-10 max-w-lg lg:mt-14">
             <p className="text-lg leading-relaxed text-[#183833]/70 sm:text-xl">
-              Знакомьтесь с TalentMind — платформой, которая анализирует реальные
-              интервью и оценивает кандидатов через призму вашей компании. Оцените
-              точность сами: получите 5 полных разборов бесплатно
+              TalentMind — платформа, которая анализирует записи интервью и
+              оценивает кандидатов через призму культуры вашей компании. Оцените
+              точность сами: получите 5 полных отчётов бесплатно
             </p>
             <a
               href="/pricing"
@@ -87,68 +88,41 @@ export default function HomePage() {
               }
             />
 
-            {/* верхняя широкая плашка · Совместимость */}
-            <div className="hero-widget absolute left-[-8%] top-[7%] z-30 h-[64px] w-[438px] max-w-[78%]" data-depth="22">
-              <div className="animate-floaty h-full w-full" style={{ animationDelay: "0.4s" }}>
-                <div className="flex h-full w-full items-center justify-between rounded-2xl bg-[#F2F8E6]/95 px-6 shadow-[0_18px_44px_rgba(122,184,0,0.20)] backdrop-blur-sm">
-                  <span className="text-base font-medium" style={{ color: INK }}>
-                    Совместимость
-                  </span>
-                  <span className="flex items-center gap-1.5 text-2xl font-bold" style={{ color: GREEN }}><CountUp to={77} />% <Arrow className="h-4 w-4" /></span>
-                </div>
-              </div>
-            </div>
-
-            {/* левая тёмная карточка · Эффективность найма (график) */}
-            <div className="hero-widget absolute left-[-16%] top-[34%] z-30 h-[372px] w-[284px]" data-depth="12">
-              <div className="animate-floaty h-full w-full" style={{ animationDelay: "1.2s" }}>
-                <div className="flex h-full w-full flex-col rounded-3xl border border-[#e6ece4] bg-white p-6 shadow-[0_28px_60px_rgba(24,56,51,0.16)]" style={{ color: INK }}>
-                  <style>{`
-                    @keyframes heroDraw { to { stroke-dashoffset: 0 } }
-                    @keyframes heroFade { to { opacity: 1 } }
-                    .hero-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: heroDraw 1.6s cubic-bezier(.4,0,.2,1) .5s forwards; }
-                    .hero-area { opacity: 0; animation: heroFade 1s ease-out 1.4s forwards; }
-                    .hero-dot { opacity: 0; transform-box: fill-box; transform-origin: center; animation: heroFade .5s ease-out 1.9s forwards, heroDotPulse 2.4s ease-in-out 2.2s infinite; }
-                    @keyframes heroDotPulse { 0%,100% { r: 4 } 50% { r: 6 } }
-                  `}</style>
-                  <p className="text-sm font-medium text-[#183833]/70">Эффективность найма</p>
-                  <svg viewBox="0 0 240 120" className="mt-4 w-full flex-1 overflow-visible">
-                    <defs>
-                      <linearGradient id="heroAreaGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#7AB800" stopOpacity="0.34" />
-                        <stop offset="100%" stopColor="#7AB800" stopOpacity="0" />
-                      </linearGradient>
-                    </defs>
-                    {[36, 72, 108].map((y) => (
-                      <line key={y} x1="0" y1={y} x2="240" y2={y} stroke="#eef2ec" strokeWidth="1" />
-                    ))}
-                    <path d="M6,86 50,68 94,76 138,44 182,52 234,20 L234,120 L6,120 Z" fill="url(#heroAreaGrad)" className="hero-area" />
-                    <polyline className="hero-line" points="6,92 50,76 94,52 138,60 182,32 234,48" pathLength={1} fill="none" stroke="#11AFCC" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ animationDelay: ".85s" }} />
-                    <polyline className="hero-line" points="6,86 50,68 94,76 138,44 182,52 234,20" pathLength={1} fill="none" stroke="#7AB800" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                    <circle className="hero-dot" cx="234" cy="20" r="4" fill="#7AB800" />
-                  </svg>
-                  <div className="mt-auto flex gap-6">
-                    <div>
-                      <p className="text-2xl font-bold">+<CountUp to={40} />%</p>
-                      <p className="text-xs text-[#183833]/45">Время HR</p>
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold" style={{ color: GREEN }}>−<CountUp to={15} />%</p>
-                      <p className="text-xs text-[#183833]/45">Ошибки найма</p>
-                    </div>
+            {/* карточка 1 · Время рекрутера на вакансию −40% */}
+            <div className="hero-widget absolute left-[calc(-11%+40px)] top-[8%] z-30 w-[260px] max-w-[72%]" data-depth="20">
+              <div className="animate-floaty" style={{ animationDelay: "0.4s" }}>
+                <div className="rounded-3xl border border-[#e6ece4] bg-white p-5 shadow-[0_24px_55px_rgba(24,56,51,0.16)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl" style={{ background: `${GREEN}1a` }}><Clock className="h-4 w-4" style={{ color: GREEN }} /></span>
+                    <span className="text-sm font-semibold" style={{ color: INK }}>Время найма</span>
                   </div>
+                  <p className="mt-3 text-[3.2rem] font-bold leading-none" style={{ color: GREEN }}>−<CountUp to={40} />%</p>
+                  <p className="mt-2 text-xs leading-snug text-[#183833]/50">Время рекрутера на вакансию</p>
                 </div>
               </div>
             </div>
 
-            {/* правая цветная карточка · Конверсия в оффер */}
-            <div className="hero-widget absolute right-[2%] top-[34%] z-30 h-[284px] w-[284px]" data-depth="18">
-              <div className="animate-floaty h-full w-full" style={{ animationDelay: "0.8s" }}>
-                <div className="flex h-full w-full flex-col rounded-3xl p-6 text-white shadow-[0_28px_60px_rgba(122,184,0,0.40)]" style={{ background: GREEN }}>
-                  <div className="flex items-center justify-between text-sm font-medium">Конверсия в оффер <Arrow className="text-white" /></div>
-                  <p className="mt-auto text-[4.5rem] font-bold leading-none">×2</p>
-                  <p className="mt-2 text-sm text-white/85">из интервью в оффер</p>
-                  <p className="mt-3 text-xs text-white/80">Time-to-Hire −<CountUp to={30} />%</p>
+            {/* карточка 2 · Конверсия в оффер ×2 */}
+            <div className="hero-widget absolute right-[-5%] top-[33%] z-30 w-[260px] max-w-[72%]" data-depth="18">
+              <div className="animate-floaty" style={{ animationDelay: "0.8s" }}>
+                <div className="rounded-3xl p-5 text-white shadow-[0_28px_60px_rgba(122,184,0,0.42)]" style={{ background: GREEN }}>
+                  <div className="flex items-center justify-between text-sm font-semibold">Конверсия в оффер <Arrow className="text-white" /></div>
+                  <p className="mt-3 flex items-center gap-1 text-[3.6rem] font-bold leading-none"><Repeat2 className="h-7 w-7 text-white/80" /> ×2</p>
+                  <p className="mt-2 text-xs text-white/85">из интервью в оффер</p>
+                </div>
+              </div>
+            </div>
+
+            {/* карточка 3 · Снижение неудачных наймов −30% */}
+            <div className="hero-widget absolute left-[-13%] bottom-[9%] z-30 w-[260px] max-w-[72%]" data-depth="14">
+              <div className="animate-floaty" style={{ animationDelay: "1.2s" }}>
+                <div className="rounded-3xl border border-[#e6ece4] bg-white p-5 shadow-[0_24px_55px_rgba(24,56,51,0.16)]">
+                  <div className="flex items-center gap-2.5">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl" style={{ background: `${TEAL}1a` }}><ShieldCheck className="h-4 w-4" style={{ color: TEAL }} /></span>
+                    <span className="text-sm font-semibold" style={{ color: INK }}>Качество найма</span>
+                  </div>
+                  <p className="mt-3 text-[3.2rem] font-bold leading-none" style={{ color: GREEN }}>−<CountUp to={30} />%</p>
+                  <p className="mt-2 text-xs leading-snug text-[#183833]/50">Снижение неудачных наймов</p>
                 </div>
               </div>
             </div>
@@ -165,7 +139,6 @@ export default function HomePage() {
       {/* ===================== PRICING (Bento) ===================== */}
       <section className="w-full px-6 py-24 md:px-12">
         <div className="reveal mx-auto mb-12 max-w-3xl text-center">
-          <p className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest" style={{ color: GREEN }}><span className="h-1.5 w-1.5 rounded-full" style={{ background: GREEN }} /> Тарифы</p>
           <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-6xl">Тарифы, которые растут с командой</h2>
         </div>
         <div className="reveal">
@@ -174,15 +147,15 @@ export default function HomePage() {
       </section>
 
       {/* ========================== MARQUEE ========================== */}
-      <div className="overflow-hidden border-y border-[#7AB800]/15 bg-[#F4F7F6] py-7">
+      <div className="overflow-hidden border-t border-white/10 bg-[#183833] py-7">
         <div className="flex w-max animate-[amzmarquee_28s_linear_infinite] items-center">
           {Array.from({ length: 2 }).map((_, dup) => (
             <div key={dup} className="flex items-center">
               {Array.from({ length: 6 }).map((_, i) => (
-                <span key={i} className="flex items-center gap-4 px-8 text-4xl font-bold tracking-tight sm:text-6xl" style={{ color: GREEN }}>
+                <a key={i} href="/contacts" className="group flex items-center gap-4 px-8 text-4xl font-bold tracking-tight transition-opacity hover:opacity-80 sm:text-6xl" style={{ color: GREEN }}>
                   Оценить 5 кандидатов бесплатно
                   <Arrow className="h-9 w-9" />
-                </span>
+                </a>
               ))}
             </div>
           ))}

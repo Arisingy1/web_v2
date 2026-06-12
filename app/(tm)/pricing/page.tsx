@@ -1,6 +1,6 @@
 "use client";
 
-import { Arrow, Eyebrow, GREEN, INK, TEAL, useReveals } from "@/components/tm/ui";
+import { Arrow, GREEN, INK, TEAL, useReveals } from "@/components/tm/ui";
 import PricingBento from "@/components/tm/PricingBento";
 
 const FAQ = [
@@ -22,8 +22,7 @@ export default function PricingPage() {
   return (
     <div ref={root} className="w-full">
       <section className="w-full px-6 pt-40 pb-12 text-center md:px-12">
-        <div className="reveal flex justify-center"><Eyebrow>Тарифы</Eyebrow></div>
-        <h1 className="reveal mx-auto mt-6 max-w-4xl text-[3rem] font-bold leading-[1] tracking-tight sm:text-[4.5rem]">
+        <h1 className="reveal mx-auto max-w-4xl text-[3rem] font-bold leading-[1] tracking-tight sm:text-[4.5rem]">
           Выберите свой <span style={{ color: GREEN }}>план найма</span>
         </h1>
         <p className="reveal mx-auto mt-6 max-w-xl text-lg text-[#183833]/70">

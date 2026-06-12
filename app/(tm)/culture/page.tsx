@@ -204,22 +204,19 @@ export default function CulturePage() {
 
       {/* ============================== HERO ============================== */}
       <section className="relative mx-auto max-w-[1100px] px-6 pt-32 pb-20 text-center md:px-12 lg:pt-44">
-        <span className="cult-rise inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest" style={{ color: GREEN }}>
-          <span className="h-1.5 w-1.5 rounded-full" style={{ background: GREEN }} /> Профиль организационной культуры
-        </span>
-        <h1 className="cult-rise mx-auto mt-5 max-w-[20ch] text-[clamp(2.2rem,4.6vw,4.6rem)] font-bold leading-[1.05] tracking-tight" style={{ color: INK }}>
-          Формируем <span style={{ color: GREEN }}>срез</span> вашей корпоративной культуры
+        <h1 className="cult-rise mx-auto max-w-[20ch] text-[clamp(2.2rem,4.6vw,4.6rem)] font-bold leading-[1.05] tracking-tight" style={{ color: INK }}>
+          Оцифровываем уникальный <span style={{ color: GREEN }}>код</span> вашей корпоративной культуры
         </h1>
         <p className="cult-rise mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#183833]/70">
-          Загрузите артефакты культуры — TalentMind построит профиль вашей компании по 54 параметрам корпоративной
-          культуры и будет оценивать каждого кандидата через призму вашей ДНК, формируя понятный итоговый отчёт
+          Загрузите артефакты культуры: сайт, соцсети, вакансии, инструкции и пр. TalentMind поможет структурировать
+          профиль вашей компании по 54 параметрам. Платформа станет вашим помощником в оценке кандидатов через призму вашей ДНК
         </p>
         <div className="cult-rise mt-9 flex flex-wrap items-center justify-center gap-3">
-          <a href="#dna" className="ease-smooth group inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-lg font-medium text-white shadow-[0_18px_40px_rgba(122,184,0,0.32)] transition-all duration-300 hover:-translate-y-1" style={{ background: GREEN }}>
-            Как это работает <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
+          <a href="/culture/primer" className="ease-smooth group inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-lg font-medium text-white shadow-[0_18px_40px_rgba(122,184,0,0.32)] transition-all duration-300 hover:-translate-y-1" style={{ background: GREEN }}>
+            Пример отчёта <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
           </a>
-          <a href="#params" className="ease-smooth inline-flex items-center gap-2 rounded-2xl border border-[#183833]/15 bg-white/70 px-6 py-4 text-lg font-medium text-[#183833] backdrop-blur transition-all duration-300 hover:-translate-y-1">
-            54 параметра
+          <a href="https://app.talentmind.ru" className="ease-smooth inline-flex items-center gap-2 rounded-2xl border border-[#183833]/15 bg-white/70 px-6 py-4 text-lg font-medium text-[#183833] backdrop-blur transition-all duration-300 hover:-translate-y-1">
+            Отчёт для вашей компании
           </a>
         </div>
       </section>

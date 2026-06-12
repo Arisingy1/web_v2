@@ -129,30 +129,38 @@ const SECTIONS: Section[] = [
 
 const APPENDIX_TIERS = [
   {
-    name: "STARTER",
+    name: "Free",
+    price: "0 ₽",
+    limit: "5 интервью (единоразово)",
+    incl: "Включено:",
+    feats: ["Загрузка профиля корпоративной культуры", "Базовый скоринг soft skills и AI-отчёт", "Базовые аналитические дашборды"],
+  },
+  {
+    name: "Starter",
     price: "14 900 ₽ / мес",
-    limit: "До 30 инт. / мес",
-    incl: "В тариф включено:",
-    feats: ["Стандартные модели компетенций", "Интеграция с ВКС-системами", "Размещение в защищённом облаке РФ", "Базовая поддержка"],
+    limit: "до 30 интервью / мес",
+    incl: "Всё из Free, плюс:",
+    feats: ["Интеграция с ВКС-системами", "Хранение данных в защищённом облаке РФ", "Email-поддержка"],
   },
   {
-    name: "GROWTH",
+    name: "Growth",
     price: "44 900 ₽ / мес",
-    limit: "До 100 инт. / мес",
-    incl: "Всё из тарифа Starter, плюс:",
-    feats: ["Интеграция с ATS", "Продвинутое сравнение кандидатов", "Приоритетная поддержка"],
+    limit: "до 100 интервью / мес",
+    incl: "Всё из Starter, плюс:",
+    feats: ["Интеграция с ATS-системами", "Брендирование отчётов (логотип компании)", "Приоритетная поддержка в мессенджерах"],
   },
   {
-    name: "SCALE",
+    name: "Scale",
     price: "169 900 ₽ / мес",
-    limit: "До 100 инт. / мес",
-    incl: "Всё из тарифа Growth, плюс:",
-    feats: ["1 кастомная модель корпоративной культуры", "Доступ к API для разработчиков", "Выделенный аккаунт-менеджер"],
+    limit: "до 400 интервью / мес",
+    incl: "Всё из Growth, плюс:",
+    feats: ["Открытый API и вебхуки", "1 кастомная AI-модель компетенций", "Контроль предвзятости (bias)", "Выделенный аккаунт-менеджер"],
   },
 ];
 
 const APPENDIX_NOTES = [
-  "Оплата тарифа производится авансовым платежом за расчетный период, равный 1 (одному) календарному месяцу.",
+  "Тариф Free предоставляется единоразово для ознакомления с сервисом — без оплаты и без привязки банковской карты.",
+  "Оплата платных тарифов производится авансовым платежом за расчетный период, равный 1 (одному) календарному месяцу.",
   "Неиспользованный в течение расчетного периода лимит интервью (оценок) на следующий расчетный период не переносится и денежной компенсации не подлежит.",
   "Интеграции в рамках тарифов осуществляются силами Заказчика с использованием предоставленной технической документации Исполнителя (для тарифа Scale доступ предоставляется через API).",
 ];
@@ -199,24 +207,38 @@ export default function OfferPage() {
           <h2 className="mt-3 text-xl font-bold tracking-tight sm:text-2xl">Тарифные планы сервиса TalentMind</h2>
           <p className="mt-1 text-sm text-[#183833]/55">к Публичной оферте об оказании услуг от «03» июня 2026 г.</p>
           <p className="mt-4 text-[15px] leading-relaxed text-[#183833]/75">
-            Исполнитель предоставляет Услуги в рамках трех базовых Тарифных планов. Объем доступных функций и лимиты
+            Исполнитель предоставляет Услуги в рамках четырёх базовых Тарифных планов. Объём доступных функций и лимиты
             на проведение оценок (интервью) определяются выбранным тарифом:
           </p>
 
-          <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {APPENDIX_TIERS.map((t) => (
-              <div key={t.name} className="flex flex-col rounded-2xl border border-[#e8efe6] bg-[#fbfdfa] p-5">
-                <p className="text-base font-bold uppercase tracking-wide" style={{ color: GREEN }}>{t.name}</p>
-                <p className="mt-2 text-2xl font-bold tracking-tight" style={{ color: INK }}>{t.price}</p>
-                <p className="text-sm text-[#183833]/55">{t.limit}</p>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-[#183833]/45">{t.incl}</p>
-                <ul className="mt-2 space-y-1.5 text-sm leading-snug text-[#183833]/80">
-                  {t.feats.map((f) => (
-                    <li key={f} className="flex items-start gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GREEN }} /> {f}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="mt-6 overflow-x-auto rounded-2xl border border-[#e8efe6]">
+            <table className="w-full min-w-[680px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="bg-[#f6faef]" style={{ color: INK }}>
+                  <th className="px-4 py-3 text-xs font-bold uppercase tracking-wide">Тарифный план</th>
+                  <th className="px-4 py-3 text-xs font-bold uppercase tracking-wide">Стоимость</th>
+                  <th className="px-4 py-3 text-xs font-bold uppercase tracking-wide">Лимит оценок</th>
+                  <th className="px-4 py-3 text-xs font-bold uppercase tracking-wide">Состав тарифа</th>
+                </tr>
+              </thead>
+              <tbody>
+                {APPENDIX_TIERS.map((t) => (
+                  <tr key={t.name} className="border-t border-[#eef0ee] align-top">
+                    <td className="px-4 py-4 font-bold uppercase tracking-wide" style={{ color: GREEN }}>{t.name}</td>
+                    <td className="px-4 py-4 whitespace-nowrap font-semibold" style={{ color: INK }}>{t.price}</td>
+                    <td className="px-4 py-4 whitespace-nowrap text-[#183833]/70">{t.limit}</td>
+                    <td className="px-4 py-4 text-[#183833]/75">
+                      <p className="text-[11px] font-semibold uppercase tracking-wide text-[#183833]/45">{t.incl}</p>
+                      <ul className="mt-1.5 space-y-1">
+                        {t.feats.map((f) => (
+                          <li key={f} className="flex items-start gap-2 leading-snug"><span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: GREEN }} /> {f}</li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
           <p className="mt-7 text-sm font-semibold" style={{ color: INK }}>Дополнительные условия по тарифам:</p>

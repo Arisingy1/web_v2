@@ -1,7 +1,7 @@
 "use client";
 
 import { Terminal, Webhook, KeyRound, Zap } from "lucide-react";
-import { Arrow, CTA, Eyebrow, GREEN, INK, TEAL, useReveals } from "@/components/tm/ui";
+import { Arrow, CTA, GREEN, INK, TEAL, useReveals } from "@/components/tm/ui";
 
 const ENDPOINTS = [
   { m: "POST", path: "/v1/interviews", d: "Загрузить запись интервью на анализ", c: GREEN },
@@ -36,8 +36,7 @@ export default function ApiPage() {
   return (
     <div ref={root}>
       <section className="mx-auto max-w-[1100px] px-6 pt-40 pb-12 text-center">
-        <div className="reveal flex justify-center"><Eyebrow>API для разработчиков</Eyebrow></div>
-        <h1 className="reveal mx-auto mt-6 max-w-3xl text-[2.6rem] font-semibold leading-[1] tracking-tight sm:text-[4rem]">
+        <h1 className="reveal mx-auto max-w-3xl text-[2.6rem] font-semibold leading-[1] tracking-tight sm:text-[4rem]">
           Встройте <span style={{ color: GREEN }}>ИИ-оценку</span> в ваш ATS
         </h1>
         <p className="reveal mx-auto mt-6 max-w-2xl text-lg text-[#183833]/70">

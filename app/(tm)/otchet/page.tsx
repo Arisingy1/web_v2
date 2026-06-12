@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Target } from "lucide-react";
 
 /* ── палитра бренда TalentMind ── */
 const GREEN = "#7AB800";
@@ -19,40 +20,108 @@ const AMBER = "#E8A317";
      (справа) — через параллакс-смену (как в видео). 50/50.
    ============================================================ */
 
-const TOTAL = 6;
-const STEPS: { n: string; title: string; text: string; img: string }[] = [
+/* кольцо индекса корпоративной совместимости */
+function RingGauge({ value }: { value: number }) {
+  const r = 34, c = 2 * Math.PI * r, off = c - (value / 100) * c;
+  return (
+    <div className="relative h-[96px] w-[96px]">
+      <svg viewBox="0 0 92 92" className="h-full w-full -rotate-90">
+        <defs><linearGradient id="cgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor={TEAL} /><stop offset="100%" stopColor={GREEN} /></linearGradient></defs>
+        <circle cx="46" cy="46" r={r} fill="none" stroke="#e3eedb" strokeWidth="8" />
+        <circle cx="46" cy="46" r={r} fill="none" stroke="url(#cgGrad)" strokeWidth="8" strokeLinecap="round" strokeDasharray={c.toFixed(1)} strokeDashoffset={off.toFixed(1)} />
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center"><span className="text-2xl font-bold" style={{ color: INK }}>{value}%</span></div>
+    </div>
+  );
+}
+/* живая карточка «Оценка корпоративной совместимости» (для разбора) */
+function CompatCard() {
+  const dims: [string, number, number][] = [
+    ["Стабильность и процессы", 82, 78],
+    ["Ориентация на результат", 80, 78],
+    ["Внимание к деталям", 76, 74],
+    ["Ориентация на людей", 70, 68],
+    ["Командная работа", 64, 78],
+  ];
+  const tone = (g: number) => (g >= 0 ? { c: GREEN, l: "Соответствует" } : g >= -8 ? { c: AMBER, l: "Близко" } : { c: RED, l: "Ниже эталона" });
+  return (
+    <div className="grid gap-4 lg:grid-cols-[0.82fr_1.18fr]">
+      <div className="flex flex-col items-center justify-center rounded-2xl border border-[#d8ecc4] bg-gradient-to-br from-[#f3faea] to-[#eef7e0] p-4 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-widest text-[#183833]/45">Индекс совместимости</p>
+        <div className="mt-2"><RingGauge value={74} /></div>
+        <span className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold shadow-sm" style={{ color: GREEN }}>Высокая совместимость</span>
+        <p className="mt-2 text-[11px] leading-snug text-[#183833]/65">Профиль кандидата близок к ДНК компании: процессы, результат и качество</p>
+      </div>
+      <div>
+        <div className="flex items-center justify-between gap-2">
+          <p className="flex items-center gap-2 text-sm font-bold" style={{ color: INK }}><span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg" style={{ background: `${GREEN}1a` }}><Target className="h-3.5 w-3.5" style={{ color: GREEN }} /></span> Совпадение по измерениям</p>
+          <span className="hidden items-center gap-1.5 text-[10px] text-[#183833]/45 sm:flex"><span className="inline-block h-2.5 w-3.5 rounded-full border border-[#cfd6ce]" style={{ background: "#e0e5df" }} /> разрыв</span>
+        </div>
+        <div className="mt-3 space-y-2.5">
+          {dims.map(([name, val, ref]) => {
+            const g = val - ref, t = tone(g);
+            return (
+              <div key={name}>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-medium" style={{ color: INK }}>{name}</span>
+                  <span className="flex shrink-0 items-center gap-2">
+                    <span className="rounded-full px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide" style={{ background: `${t.c}1a`, color: t.c }}>{t.l}</span>
+                    <span className="text-xs font-bold tabular-nums" style={{ color: t.c }}>{val}<span className="font-medium text-[#183833]/35"> / {ref}</span></span>
+                  </span>
+                </div>
+                <div className="relative mt-1.5 h-2.5 w-full overflow-hidden rounded-full bg-[#eef2ec]">
+                  {g < 0 && <div className="absolute inset-y-0 rounded-r-full" style={{ left: `${val}%`, width: `${-g}%`, background: "repeating-linear-gradient(-45deg,#dfe4de,#dfe4de 3px,#eceff0 3px,#eceff0 6px)" }} />}
+                  <div className="absolute inset-y-0 left-0 rounded-full" style={{ width: `${val}%`, background: t.c }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const TOTAL = 7;
+const STEPS: { n: string; title: string; text: string; img?: string; node?: React.ReactNode }[] = [
   {
     n: "01",
     title: "Кандидат и соответствие",
-    text: "Базовый профиль, опыт и итоговый процент соответствия требованиям вакансии — одним взглядом. ИИ сразу выдаёт чёткую рекомендацию с объективными аргументами «За» и «Против»",
+    text: "Базовый профиль, опыт и итоговый процент соответствия требованиям вакансии — одним взглядом. ИИ формирует прозрачный профиль кандидата с аргументами «За» и «Против», давая вам надёжную базу для принятия итогового решения",
     img: "/1.png",
   },
   {
     n: "02",
+    title: "Оценка корпоративной совместимости",
+    text: "Насколько ценности и поведение кандидата совпадают с ДНК и культурным кодом компании. Платформа считает индекс совместимости и раскладывает его по ключевым измерениям культуры — с подсветкой зон отставания от эталона",
+    node: <CompatCard />,
+  },
+  {
+    n: "03",
     title: "Глубокая аналитика и скрытые риски",
     text: "Система заглядывает дальше резюме. Выявляйте истинные сильные стороны, красные флаги (например, риск ухода) и анализируйте психолингвистику: как кандидат делит ответственность (баланс «Я» и «Мы») и какой у него локус контроля",
     img: "/2.png",
   },
   {
-    n: "03",
+    n: "04",
     title: "Визуализация зон роста",
     text: "Наглядная радар-диаграмма сравнивает реальные навыки кандидата с эталонным профилем вашей должности. Мгновенно оценивайте среднее отклонение и выявляйте самые критичные разрывы в компетенциях",
     img: "/3.png",
   },
   {
-    n: "04",
+    n: "05",
     title: "Детальная карта soft skills",
     text: "Оцифровка каждого гибкого навыка. Платформа оценивает лидерство, коммуникацию, эмпатию и критическое мышление, подкрепляя каждую оценку фактурой из диалога",
     img: "/4.png",
   },
   {
-    n: "05",
+    n: "06",
     title: "Оценка опыта по модели STAR",
     text: "ИИ автоматически извлекает из интервью рабочие кейсы и структурирует их по методологии STAR: Ситуация, Задача, Действие и Результат, чтобы доказать реальную компетентность кандидата",
     img: "/5.png",
   },
   {
-    n: "06",
+    n: "07",
     title: "Подготовка к финалу",
     text: "Платформа генерирует список точечных вопросов для нанимающего менеджера, чтобы прицельно проверить слабые зоны и риски, выявленные на первичном интервью",
     img: "/6.png",
@@ -113,8 +182,10 @@ export default function OtchetPage() {
         const N = texts.length;
         if (!N) return;
 
-        texts.forEach((el, i) => gsap.set(el, { autoAlpha: i ? 0 : 1, y: i ? 60 : 0, filter: i ? "blur(10px)" : "blur(0px)" }));
-        imgs.forEach((el, i) => gsap.set(el, { autoAlpha: i ? 0 : 1, y: i ? 70 : 0, scale: i ? 0.94 : 1, filter: i ? "blur(14px)" : "blur(0px)" }));
+        /* без blur в scrub-кроссфейде: остановка скролла на полпути не оставит
+           размытый кадр — переход только сдвиг/прозрачность/масштаб */
+        texts.forEach((el, i) => gsap.set(el, { autoAlpha: i ? 0 : 1, y: i ? 60 : 0 }));
+        imgs.forEach((el, i) => gsap.set(el, { autoAlpha: i ? 0 : 1, y: i ? 70 : 0, scale: i ? 0.94 : 1 }));
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -131,10 +202,10 @@ export default function OtchetPage() {
 
         for (let i = 1; i < N; i++) {
           const at = i - 1;
-          tl.to(texts[i - 1], { autoAlpha: 0, y: -60, filter: "blur(10px)", ease: "power2.in", duration: 0.45 }, at)
-            .to(imgs[i - 1], { autoAlpha: 0, y: -70, scale: 0.94, filter: "blur(14px)", ease: "power2.in", duration: 0.45 }, at)
-            .to(texts[i], { autoAlpha: 1, y: 0, filter: "blur(0px)", ease: "power2.out", duration: 0.55 }, at + 0.4)
-            .to(imgs[i], { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", ease: "power2.out", duration: 0.55 }, at + 0.4)
+          tl.to(texts[i - 1], { autoAlpha: 0, y: -60, ease: "power2.in", duration: 0.45 }, at)
+            .to(imgs[i - 1], { autoAlpha: 0, y: -70, scale: 0.94, ease: "power2.in", duration: 0.45 }, at)
+            .to(texts[i], { autoAlpha: 1, y: 0, ease: "power2.out", duration: 0.55 }, at + 0.4)
+            .to(imgs[i], { autoAlpha: 1, y: 0, scale: 1, ease: "power2.out", duration: 0.55 }, at + 0.4)
             .to({}, { duration: 0.5 }, at + 1);
         }
 
@@ -146,9 +217,9 @@ export default function OtchetPage() {
         const blocks = gsap.utils.toArray<HTMLElement>(".sc-mob");
         const tw = blocks.map((el) =>
           gsap.fromTo(el,
-            { autoAlpha: 0, y: 44, filter: "blur(10px)" },
-            { autoAlpha: 1, y: 0, filter: "blur(0px)", ease: "power2.out",
-              scrollTrigger: { trigger: el, start: "top 86%", end: "top 56%", scrub: 1 } }));
+            { autoAlpha: 0, y: 40 },
+            { autoAlpha: 1, y: 0, duration: 0.7, ease: "power3.out",
+              scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" } }));
         return () => tw.forEach((t) => { t.scrollTrigger?.kill(); t.kill(); });
       });
 
@@ -163,20 +234,17 @@ export default function OtchetPage() {
 
       {/* ============================== HERO ============================== */}
       <section className="relative mx-auto max-w-[1600px] px-6 pt-32 pb-10 text-center md:px-8 lg:pt-40">
-        <span className="otchet-rise inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest" style={{ color: GREEN }}>
-          <span className="h-1.5 w-1.5 rounded-full" style={{ background: GREEN }} /> Пример отчёта
-        </span>
-        <h1 className="otchet-rise mx-auto mt-5 max-w-[18ch] text-[clamp(2.4rem,5vw,4.8rem)] font-bold leading-[1.02] tracking-tight" style={{ color: INK }}>
+        <h1 className="otchet-rise mx-auto max-w-[18ch] text-[clamp(2.4rem,5vw,4.8rem)] font-bold leading-[1.02] tracking-tight" style={{ color: INK }}>
           Готовый <span style={{ color: GREEN }}>отчёт</span> по кандидату
         </h1>
         <p className="otchet-rise mx-auto mt-5 max-w-xl text-lg leading-relaxed text-[#183833]/70">
-          Объективный разбор soft skills и корпоративной совместимости на основе реального интервью
+          Детальный разбор soft skills и корпоративной совместимости на основе реального интервью
         </p>
         <div className="otchet-rise mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href="#razbor" className="ease-smooth group inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-lg font-medium text-white shadow-[0_18px_40px_rgba(122,184,0,0.32)] transition-all duration-300 hover:-translate-y-1" style={{ background: GREEN }}>
-            Смотреть разбор <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
+          <a href="/otchet/primer" className="ease-smooth group inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-lg font-medium text-white shadow-[0_18px_40px_rgba(122,184,0,0.32)] transition-all duration-300 hover:-translate-y-1" style={{ background: GREEN }}>
+            Посмотреть отчёт <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
           </a>
-          <a href="/pricing" className="ease-smooth inline-flex items-center gap-2 rounded-2xl border border-[#183833]/15 bg-white/70 px-6 py-4 text-lg font-medium text-[#183833] backdrop-blur transition-all duration-300 hover:-translate-y-1">
+          <a href="https://app.talentmind.ru" className="ease-smooth inline-flex items-center gap-2 rounded-2xl border border-[#183833]/15 bg-white/70 px-6 py-4 text-lg font-medium text-[#183833] backdrop-blur transition-all duration-300 hover:-translate-y-1">
             Получить свой отчёт
           </a>
         </div>
@@ -190,7 +258,9 @@ export default function OtchetPage() {
                 <p className="text-center text-sm font-bold" style={{ color: INK }}>Результат анализа</p>
                 <div className="mt-3 space-y-2">
                   {STEPS.map((s) => (
-                    <img key={s.n} src={s.img} alt="" className="w-full rounded-lg border border-[#eaefe8] bg-white shadow-sm" />
+                    s.node
+                      ? <div key={s.n} className="rounded-lg border border-[#eaefe8] bg-white p-3 shadow-sm">{s.node}</div>
+                      : <img key={s.n} src={s.img} alt="" className="w-full rounded-lg border border-[#eaefe8] bg-white shadow-sm" />
                   ))}
                 </div>
               </div>
@@ -255,7 +325,7 @@ export default function OtchetPage() {
                       <span className="ml-auto hidden items-center gap-1.5 rounded-full bg-[#f1f6ec] px-3 py-1 text-xs font-semibold sm:inline-flex" style={{ color: GREEN }}>Раздел {s.n}</span>
                     </div>
                     <div className="bg-white p-4 md:p-5">
-                      <img src={s.img} alt={s.title} className="w-full rounded-xl" />
+                      {s.node ?? <img src={s.img} alt={s.title} className="w-full rounded-xl" />}
                     </div>
                   </div>
                 </div>
@@ -280,7 +350,7 @@ export default function OtchetPage() {
                   <span className="h-2.5 w-2.5 rounded-full" style={{ background: AMBER }} />
                   <span className="h-2.5 w-2.5 rounded-full" style={{ background: GREEN }} />
                 </div>
-                <div className="p-3"><img src={s.img} alt={s.title} className="w-full rounded-lg" /></div>
+                <div className="p-3">{s.node ?? <img src={s.img} alt={s.title} className="w-full rounded-lg" />}</div>
               </div>
             </div>
           ))}
