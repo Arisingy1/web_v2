@@ -508,7 +508,6 @@ function HeaderRing({ value }: { value: number }) {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center leading-none text-white">
         <span className="text-2xl font-bold tabular-nums">{value}</span>
-        <span className="text-[9px] font-medium text-white/70">из 100</span>
       </div>
     </div>
   );
@@ -524,7 +523,6 @@ function ScoreRing({ value, color }: { value: number; color: string }) {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center leading-none">
         <span className="text-lg font-bold tabular-nums" style={{ color }}>{value}</span>
-        <span className="text-[8px] font-medium text-[#183833]/40">из 100</span>
       </div>
     </div>
   );

@@ -44,8 +44,8 @@ export default function ApiPage() {
           и совместимость с ДНК команды программно
         </p>
         <div className="reveal mx-auto mt-9 flex max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
-          <CTA className="w-full justify-center sm:w-auto">Получить ключ</CTA>
-          <CTA variant="outline" className="w-full justify-center sm:w-auto">Документация</CTA>
+          <CTA href="/api/docs" className="w-full justify-center sm:w-auto">Получить ключ</CTA>
+          <CTA href="/api/docs" variant="outline" className="w-full justify-center sm:w-auto">Документация</CTA>
         </div>
       </section>
 
