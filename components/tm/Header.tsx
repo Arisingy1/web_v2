@@ -61,7 +61,7 @@ export default function Header() {
           tabIndex={collapsed ? 0 : -1}
           aria-label={collapsed ? "Развернуть меню" : undefined}
           className={`relative flex w-full max-w-[1280px] items-center overflow-hidden rounded-full border border-black/5 bg-white py-2.5 px-5 shadow-[0_14px_40px_rgba(24,56,51,0.10)] transition-all duration-500 ease-in-out sm:py-3 lg:px-7 ${
-            collapsed ? "lg:max-w-[72px] lg:cursor-pointer lg:px-5" : "2xl:max-w-[1440px] 3xl:max-w-[1600px]"
+            collapsed ? "lg:max-w-[72px] lg:cursor-pointer lg:justify-center lg:px-5" : "2xl:max-w-[1440px] 3xl:max-w-[1600px]"
           }`}
         >
           {/* ЛОГОТИП-ССЫЛКА на главную; в свёрнутом виде клик разворачивает шапку */}
