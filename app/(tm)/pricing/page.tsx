@@ -49,12 +49,12 @@ export default function PricingPage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em]" style={{ color: "#cfeac0" }}>
                 Enterprise
               </span>
-              <p className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">Индивидуальный расчёт</p>
+              <p className="mt-5 text-[clamp(1.55rem,5.5vw,3rem)] font-bold leading-tight tracking-tight">Индивидуальный расчёт</p>
               <p className="mt-2 text-lg font-medium" style={{ color: GREEN }}>Безлимитный объём интервью</p>
               <p className="mt-4 max-w-md leading-relaxed text-white/65">
                 Максимальная безопасность и индивидуальные решения для корпораций. Всё, что входит в Scale, плюс расширенные возможности
               </p>
-              <a href="/contacts" className="ease-smooth group mt-7 inline-flex items-center gap-2 rounded-2xl px-7 py-4 text-lg font-semibold transition-all duration-300 hover:-translate-y-1" style={{ background: GREEN, color: INK }}>
+              <a href="/contacts" className="ease-smooth group mt-7 flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-2xl px-7 py-4 text-lg font-semibold transition-all duration-300 hover:-translate-y-1 sm:inline-flex sm:w-auto sm:justify-start" style={{ background: GREEN, color: INK }}>
                 Обсудить внедрение <Arrow style={{ color: INK }} />
               </a>
             </div>

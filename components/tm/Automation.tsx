@@ -339,6 +339,12 @@ export default function Automation() {
     const el = sectionRef.current;
     if (!el) return;
 
+    const mm = gsap.matchMedia();
+
+    /* Blur-анимации при прокрутке — только десктоп (lg+).
+       На мобильных блоки остаются статично видимыми: без размытия
+       и без пустых «размытых» экранов при пролистывании. */
+    mm.add("(min-width: 1024px)", () => {
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".auto-step").forEach((step) => {
         const tall = step.classList.contains("auto-step-report");
@@ -373,7 +379,10 @@ export default function Automation() {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    });
+
+    return () => mm.revert();
   }, []);
 
   return (
@@ -381,7 +390,7 @@ export default function Automation() {
       {STEPS.map((s, i) => (
         <div
           key={s.key}
-          className={`auto-step relative flex w-full items-center justify-center px-6 will-change-[filter,opacity] md:px-12 ${i === STEPS.length - 1 ? "min-h-[64vh]" : i === STEPS.length - 2 ? "min-h-[84vh]" : "min-h-screen"} ${s.full ? (i === STEPS.length - 1 ? "auto-step-report pt-4 pb-16" : i === STEPS.length - 2 ? "auto-step-report pt-24 pb-6" : "auto-step-report py-24") : "overflow-hidden"}`}
+          className={`auto-step relative flex w-full items-center justify-center px-5 will-change-[filter,opacity] sm:px-6 md:px-12 ${i === STEPS.length - 1 ? "min-h-[56vh] lg:min-h-[64vh]" : i === STEPS.length - 2 ? "min-h-[70vh] lg:min-h-[84vh]" : "min-h-[80vh] lg:min-h-screen"} ${s.full ? (i === STEPS.length - 1 ? "auto-step-report pt-4 pb-16" : i === STEPS.length - 2 ? "auto-step-report pt-24 pb-6" : "auto-step-report py-24") : "overflow-hidden"}`}
         >
           <div className="pointer-events-none absolute inset-0 -z-10">
             <div className="absolute -left-24 top-[10%] h-[440px] w-[440px] rounded-full bg-[#7AB800]/16 blur-[140px]" />
@@ -389,7 +398,7 @@ export default function Automation() {
           </div>
 
           {s.full ? (
-            <div className="relative z-10 w-full">{s.full}</div>
+            <div className="relative z-10 mx-auto w-full 2xl:max-w-[1600px] 3xl:max-w-[1760px]">{s.full}</div>
           ) : (
             <>
               <div className="pointer-events-none absolute inset-0 hidden lg:block">{s.widgets}</div>

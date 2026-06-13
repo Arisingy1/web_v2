@@ -6,6 +6,9 @@
    ============================================================ */
 
 @theme {
+  /* Ultrawide breakpoint — для широкоформатных мониторов (1920px+) */
+  --breakpoint-3xl: 120rem; /* 1920px */
+
   /* Brand palette */
   --color-ink: #183833; /* deep dark teal/emerald — text + dark accents */
   --color-ink-700: #20493f;
