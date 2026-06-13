@@ -19,7 +19,7 @@ const FEATURES: { n: string; title: string; text: string; color: string; icon: R
   { n: "02", title: "Контекст не теряется", text: "Ассистент помнит весь диалог и каждое интервью — спрашивайте без повторных вводных", color: TEAL, icon: <Brain className="h-6 w-6" />, span: "" },
   { n: "03", title: "Ответ за секунды", text: "Мгновенно — на основе анализа реальных интервью, а не общих фраз", color: AMBER, icon: <Zap className="h-6 w-6" />, span: "" },
   { n: "04", title: "Сравнение кандидатов", text: "Быстрое сравнение профилей — поручите ассистенту сопоставить кандидатов по вашим критериям", color: TEAL, icon: <Users className="h-6 w-6" />, span: "" },
-  { n: "05", title: "Рекомендации к найму", text: "Поддержка в выборе — получайте структурированные выжимки из интервью, чтобы аргументированно рекомендовать кандидатов нанимающим менеджерам", color: GREEN, icon: <Sparkles className="h-6 w-6" />, span: "" },
+  { n: "05", title: "Рекомендации к найму", text: "Поддержка в выборе — получайте структурированные выжимки из интервью, чтобы аргументированно рекомендовать кандидатов нанимающим менеджерам", color: GREEN, icon: <Sparkles className="h-6 w-6" />, span: "sm:col-span-2 lg:col-span-1" },
 ];
 
 export default function ProductPage() {
@@ -111,13 +111,13 @@ export default function ProductPage() {
             <AssistantChat />
           </div>
           {/* плавающие чипы */}
-          <div className="depth absolute right-[2%] top-[26%] z-30" data-depth="40">
+          <div className="depth absolute right-0 top-[6%] z-30 lg:right-[2%] lg:top-[26%]" data-depth="40">
             <div className="animate-floaty rounded-2xl border border-[#e6ece4] bg-white px-4 py-2.5 shadow-[0_18px_44px_rgba(24,56,51,0.12)]" style={{ animationDelay: "0.6s" }}>
               <p className="text-xs text-[#183833]/55">Совместимость</p>
               <p className="text-xl font-bold" style={{ color: GREEN }}>88%</p>
             </div>
           </div>
-          <div className="depth absolute left-[1%] top-[40%] z-30" data-depth="34">
+          <div className="depth absolute left-0 top-[19%] z-30 lg:left-[1%] lg:top-[40%]" data-depth="34">
             <div className="animate-floaty flex items-center gap-2 rounded-2xl border border-[#e6ece4] bg-white px-4 py-2.5 shadow-[0_18px_44px_rgba(24,56,51,0.12)]" style={{ animationDelay: "1.2s" }}>
               <Users className="h-4 w-4" style={{ color: TEAL }} />
               <p className="text-sm font-semibold" style={{ color: INK }}>3 кандидата</p>

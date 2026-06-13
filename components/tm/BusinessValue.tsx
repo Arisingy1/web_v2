@@ -15,9 +15,9 @@ import { ComplianceDiagram } from "./ComplianceDiagram";
 
 export default function BusinessValue() {
   return (
-    <section className="w-full px-4 py-12 md:px-8">
+    <section className="w-full px-3 py-10 sm:px-4 sm:py-12 md:px-8">
       <div
-        className="relative overflow-hidden rounded-[2.5rem] border border-[#e6ece4] px-5 pb-14 pt-6 md:px-8 md:pb-16"
+        className="relative mx-auto overflow-hidden rounded-[1.75rem] border border-[#e6ece4] px-5 pb-12 pt-8 sm:rounded-[2.5rem] md:px-8 md:pb-16 2xl:max-w-[1500px] 3xl:max-w-[1680px]"
         style={{ background: "linear-gradient(135deg,#eef5e7 0%,#ffffff 45%,#eaf3e2 100%)" }}
       >
         <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-[#7AB800]/15 blur-[130px]" />
@@ -25,9 +25,9 @@ export default function BusinessValue() {
 
         {/* текст + выделенный заголовок */}
         <div className="relative">
-          <h2 className="max-w-[26ch] text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]" style={{ color: INK }}>
+          <h2 className="max-w-[26ch] text-[clamp(1.75rem,6.5vw,3.5rem)] font-extrabold leading-[1.1] tracking-tight" style={{ color: INK }}>
             Глубокая аналитика кандидатов на основе{" "}
-            <span className="relative inline-block whitespace-nowrap">
+            <span className="relative inline-block sm:whitespace-nowrap">
               <span className="relative z-10" style={{ color: GREEN }}>объективных данных</span>
               <span className="absolute inset-x-[-3px] bottom-[0.1em] -z-0 h-[0.4em] -rotate-1 rounded-sm" style={{ background: `${GREEN}30` }} />
             </span>
@@ -44,7 +44,7 @@ export default function BusinessValue() {
 
         {/* 3 живых превью-экрана платформы (вместо статичных картинок):
             результаты сравнения · диаграмма соответствия · чат ИИ-ассистента */}
-        <div className="relative mt-10 grid w-full grid-cols-1 items-start gap-6 lg:grid-cols-[1.35fr_1.15fr_1fr]">
+        <div className="relative mt-10 hidden w-full grid-cols-1 items-start gap-6 lg:grid lg:grid-cols-[1.35fr_1.15fr_1fr]">
           <div className="ease-smooth h-[560px] transition-transform duration-300 hover:-translate-y-1">
             <ComparisonPanel />
           </div>

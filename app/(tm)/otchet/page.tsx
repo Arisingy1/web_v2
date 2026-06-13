@@ -4,6 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Target } from "lucide-react";
+import {
+  CandidateDecision, RisksStrengthsPsycho, ComplianceDiagram,
+  SoftSkillsMap, StarCases, Recommendations,
+} from "@/components/tm/reportBlocks";
 
 /* ── палитра бренда TalentMind ── */
 const GREEN = "#7AB800";
@@ -27,8 +31,9 @@ function RingGauge({ value }: { value: number }) {
     <div className="relative h-[96px] w-[96px]">
       <svg viewBox="0 0 92 92" className="h-full w-full -rotate-90">
         <defs><linearGradient id="cgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor={TEAL} /><stop offset="100%" stopColor={GREEN} /></linearGradient></defs>
+        <style>{`@keyframes ringDraw{from{stroke-dashoffset:${c.toFixed(1)}}to{stroke-dashoffset:${off.toFixed(1)}}}`}</style>
         <circle cx="46" cy="46" r={r} fill="none" stroke="#e3eedb" strokeWidth="8" />
-        <circle cx="46" cy="46" r={r} fill="none" stroke="url(#cgGrad)" strokeWidth="8" strokeLinecap="round" strokeDasharray={c.toFixed(1)} strokeDashoffset={off.toFixed(1)} />
+        <circle cx="46" cy="46" r={r} fill="none" stroke="url(#cgGrad)" strokeWidth="8" strokeLinecap="round" strokeDasharray={c.toFixed(1)} style={{ strokeDashoffset: off.toFixed(1), animation: "ringDraw 1.2s cubic-bezier(.22,1,.36,1) .2s both" }} />
       </svg>
       <div className="absolute inset-0 flex items-center justify-center"><span className="text-2xl font-bold" style={{ color: INK }}>{value}%</span></div>
     </div>
@@ -83,12 +88,15 @@ function CompatCard() {
 }
 
 const TOTAL = 7;
-const STEPS: { n: string; title: string; text: string; img?: string; node?: React.ReactNode }[] = [
+/* img — для десктопного pinned-разбора (как было);
+   mnode — свёрстанный код-блок для мобильной версии (вместо картинки). */
+const STEPS: { n: string; title: string; text: string; img?: string; node?: React.ReactNode; mnode?: React.ReactNode }[] = [
   {
     n: "01",
     title: "Кандидат и соответствие",
     text: "Базовый профиль, опыт и итоговый процент соответствия требованиям вакансии — одним взглядом. ИИ формирует прозрачный профиль кандидата с аргументами «За» и «Против», давая вам надёжную базу для принятия итогового решения",
     img: "/1.png",
+    mnode: <CandidateDecision />,
   },
   {
     n: "02",
@@ -101,30 +109,35 @@ const STEPS: { n: string; title: string; text: string; img?: string; node?: Reac
     title: "Глубокая аналитика и скрытые риски",
     text: "Система заглядывает дальше резюме. Выявляйте истинные сильные стороны, красные флаги (например, риск ухода) и анализируйте психолингвистику: как кандидат делит ответственность (баланс «Я» и «Мы») и какой у него локус контроля",
     img: "/2.png",
+    mnode: <RisksStrengthsPsycho />,
   },
   {
     n: "04",
     title: "Визуализация зон роста",
     text: "Наглядная радар-диаграмма сравнивает реальные навыки кандидата с эталонным профилем вашей должности. Мгновенно оценивайте среднее отклонение и выявляйте самые критичные разрывы в компетенциях",
     img: "/3.png",
+    mnode: <ComplianceDiagram />,
   },
   {
     n: "05",
     title: "Детальная карта soft skills",
     text: "Оцифровка каждого гибкого навыка. Платформа оценивает лидерство, коммуникацию, эмпатию и критическое мышление, подкрепляя каждую оценку фактурой из диалога",
     img: "/4.png",
+    mnode: <SoftSkillsMap />,
   },
   {
     n: "06",
     title: "Оценка опыта по модели STAR",
     text: "ИИ автоматически извлекает из интервью рабочие кейсы и структурирует их по методологии STAR: Ситуация, Задача, Действие и Результат, чтобы доказать реальную компетентность кандидата",
     img: "/5.png",
+    mnode: <StarCases />,
   },
   {
     n: "07",
     title: "Подготовка к финалу",
     text: "Платформа генерирует список точечных вопросов для нанимающего менеджера, чтобы прицельно проверить слабые зоны и риски, выявленные на первичном интервью",
     img: "/6.png",
+    mnode: <Recommendations />,
   },
 ];
 
@@ -249,8 +262,8 @@ export default function OtchetPage() {
           </a>
         </div>
 
-        {/* ── ноутбук с живым отчётом ── */}
-        <div className="otchet-rise relative z-10 mx-auto mt-8 w-full max-w-[1534px]">
+        {/* ── ноутбук с живым отчётом (только десктоп; на мобильном убран) ── */}
+        <div className="otchet-rise relative z-10 mx-auto mt-8 hidden w-full max-w-[1534px] lg:block">
           <img src="/Group 1222.png" alt="TalentMind — отчёт по кандидату" className="pointer-events-none w-full select-none" draggable={false} />
           <div ref={screenRef} className="absolute overflow-hidden bg-[#f4f7f6]" style={{ left: "27.6%", top: "20.6%", width: "44.8%", height: "42.2%" }}>
             <div ref={contentRef} className="will-change-transform">
@@ -334,8 +347,8 @@ export default function OtchetPage() {
           </div>
         </section>
 
-        {/* МОБИЛЬНАЯ ВЕРСИЯ */}
-        <section className="px-6 pb-16 pt-4 lg:hidden">
+        {/* МОБИЛЬНАЯ ВЕРСИЯ — код-блоки вместо картинок (в стиле сайта) */}
+        <section className="px-4 pb-16 pt-4 sm:px-6 lg:hidden">
           {STEPS.map((s) => (
             <div key={s.n} className="sc-mob mb-14">
               <span className="inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.2em]" style={{ color: GREEN }}>
@@ -344,13 +357,8 @@ export default function OtchetPage() {
               </span>
               <h2 className="mt-3 text-2xl font-bold leading-[1.1] tracking-tight" style={{ color: INK }}>{s.title}</h2>
               <p className="mt-2 text-base leading-relaxed text-[#183833]/70">{s.text}</p>
-              <div className="mt-5 overflow-hidden rounded-[22px] border border-[#e6ece4] bg-white shadow-[0_24px_60px_rgba(24,56,51,0.12)]">
-                <div className="flex items-center gap-2 border-b border-[#eef2ec] bg-[#fbfdfa] px-4 py-3">
-                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: RED }} />
-                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: AMBER }} />
-                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: GREEN }} />
-                </div>
-                <div className="p-3">{s.node ?? <img src={s.img} alt={s.title} className="w-full rounded-lg" />}</div>
+              <div className="mt-5">
+                {s.mnode ?? s.node ?? <img src={s.img} alt={s.title} className="w-full rounded-2xl border border-[#e6ece4]" />}
               </div>
             </div>
           ))}

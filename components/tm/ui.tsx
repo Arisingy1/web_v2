@@ -142,16 +142,18 @@ export function CTA({
   children,
   href = "#",
   variant = "green",
+  className = "",
 }: {
   children: React.ReactNode;
   href?: string;
   variant?: "green" | "outline";
+  className?: string;
 }) {
   if (variant === "outline") {
     return (
       <a
         href={href}
-        className="ease-smooth inline-flex items-center gap-2 rounded-full border border-[#183833]/15 bg-white px-7 py-4 text-base font-medium text-[#183833] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(24,56,51,0.1)]"
+        className={`ease-smooth inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-[#183833]/15 bg-white px-7 py-4 text-base font-medium text-[#183833] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(24,56,51,0.1)] ${className}`}
       >
         {children}
       </a>
@@ -160,7 +162,7 @@ export function CTA({
   return (
     <a
       href={href}
-      className="ease-smooth group inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-medium text-white shadow-[0_18px_40px_rgba(122,184,0,0.3)] transition-all duration-300 hover:-translate-y-1"
+      className={`ease-smooth group inline-flex items-center gap-2 whitespace-nowrap rounded-full px-8 py-4 text-base font-medium text-white shadow-[0_18px_40px_rgba(122,184,0,0.3)] transition-all duration-300 hover:-translate-y-1 ${className}`}
       style={{ background: GREEN }}
     >
       {children}

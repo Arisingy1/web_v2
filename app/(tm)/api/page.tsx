@@ -43,9 +43,9 @@ export default function ApiPage() {
           REST API и вебхуки TalentMind: загружайте интервью, получайте скоринг soft skills
           и совместимость с ДНК команды программно
         </p>
-        <div className="reveal mt-9 flex justify-center gap-4">
-          <CTA>Получить ключ</CTA>
-          <CTA variant="outline">Документация</CTA>
+        <div className="reveal mx-auto mt-9 flex max-w-md flex-col items-stretch gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
+          <CTA className="w-full justify-center sm:w-auto">Получить ключ</CTA>
+          <CTA variant="outline" className="w-full justify-center sm:w-auto">Документация</CTA>
         </div>
       </section>
 
