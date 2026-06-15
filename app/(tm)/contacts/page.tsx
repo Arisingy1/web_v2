@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Arrow, GREEN, INK, TEAL, useReveals } from "@/components/tm/ui";
 
 export default function ContactsPage() {
   const root = useReveals();
+  const [agree, setAgree] = useState(false);
   return (
     <div ref={root}>
       <section className="mx-auto max-w-[1100px] px-6 pt-40 pb-12 text-center">
@@ -64,16 +66,30 @@ export default function ContactsPage() {
               className="mt-1.5 w-full rounded-xl border border-[#ededed] bg-[#F4F7F6] px-4 py-3 text-sm outline-none focus:border-[#7AB800]"
             />
           </div>
+          <label className="mt-6 flex cursor-pointer items-start gap-3">
+            <input
+              type="checkbox"
+              checked={agree}
+              onChange={(e) => setAgree(e.target.checked)}
+              className="mt-0.5 h-5 w-5 shrink-0 cursor-pointer rounded-md accent-[#7AB800]"
+              required
+            />
+            <span className="text-xs leading-snug text-[#183833]/65">
+              Я даю согласие на обработку персональных данных в соответствии с{" "}
+              <a href="/privacy" target="_blank" rel="noopener noreferrer" className="font-medium underline underline-offset-2 transition-colors hover:opacity-80" style={{ color: GREEN }}>
+                Политикой обработки персональных данных
+              </a>{" "}
+              и 152-ФЗ
+            </span>
+          </label>
           <button
             type="submit"
-            className="group mt-6 flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+            disabled={!agree}
+            className="group mt-5 flex w-full items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:translate-y-0"
             style={{ background: GREEN }}
           >
             <Send className="h-4 w-4" /> Отправить заявку <Arrow className="text-white" />
           </button>
-          <p className="mt-3 text-center text-xs text-[#183833]/50">
-            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
-          </p>
         </form>
       </section>
     </div>

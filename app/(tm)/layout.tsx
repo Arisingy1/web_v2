@@ -2,6 +2,7 @@
 import LenisProvider from "@/components/tm/LenisProvider";
 import Header from "@/components/tm/Header";
 import Footer from "@/components/tm/Footer";
+import CookieBanner from "@/components/tm/CookieBanner";
 
 export default function TMLayout({
   children,
@@ -23,6 +24,7 @@ export default function TMLayout({
         <Header />
         <main className="relative z-10">{children}</main>
         <Footer />
+        <CookieBanner />
       </div>
     </LenisProvider>
   );
